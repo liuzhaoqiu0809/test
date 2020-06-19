@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>  
+<head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+    on iOS devices-->
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+  <title></title>
+
+  <style> 
+    html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
+   
+    .first{
+      background:lightgreen;
+      width:100px;
+      height:800px;
+    }
+    .content {
+      width: 50%;
+      height: 50%;
+      background-color: brown;
+      padding: 25%;
+    }
+
+  </style> 
+  
+  
+</head> 
+
+<body> 
+  <div class="first">
+  </div>
+  <script>
+
+
+function debounce(fn) {
+      let timeout = null; // 创建一个标记用来存放定时器的返回值
+      return function () {
+        clearTimeout(timeout); // 每当用户输入的时候把前一个 setTimeout clear 掉
+
+        timeout = setTimeout(function () { // 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数
+        console.log(this, 'this')
+          
+          fn.apply(this, arguments);
+        }, 500);
+      };
+    }
+    function sayHi() {
+      // console.log(this)
+      console.log('防抖成功');
+    }
+
+    var inp = document.getElementsByClassName('first')[0];
+    inp.addEventListener('click', debounce(sayHi)); // 防抖
+
+
+
+
+
+
+
+  </script>
+</body> 
+
+</html>
